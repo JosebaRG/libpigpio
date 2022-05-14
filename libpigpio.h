@@ -27,34 +27,12 @@ int libpigpio_close (char gpio [LIBPIGPIO_GPIO_LENGTH]); // error code: 2
 
 int libpigpio_write_direction (char gpio [LIBPIGPIO_GPIO_LENGTH], char direction [LIBPIGPIO_DIR_LENGTH]); // error code: 3
 
-int libpigpio_read_direction (char gpio [LIBPIGPIO_GPIO_LENGTH], char direction [LIBPIGPIO_DIR_LENGTH]); // error code: 4
+int libpigpio_read_direction (char gpio [LIBPIGPIO_GPIO_LENGTH], char *direction); // error code: 4
 
 int libpigpio_init (char gpio [LIBPIGPIO_GPIO_LENGTH], char direction [LIBPIGPIO_DIR_LENGTH]);
 
 int libpigpio_write_value (char gpio [LIBPIGPIO_GPIO_LENGTH], char value [LIBPIGPIO_DIR_LENGTH]); // error code: 5
 
-int libpigpio_read_value (char gpio [LIBPIGPIO_GPIO_LENGTH], char value [LIBPIGPIO_DIR_LENGTH]); // error code: 6
+int libpigpio_read_value (char gpio [LIBPIGPIO_GPIO_LENGTH], char *value); // error code: 6
 
 #endif // _LIBPIGPIO
-
-
-
-/*******************************************************************
-* NAME :            int KB_GetLine(pKbdBuf, MaxChars)
-*
-* DESCRIPTION :     Input line of text from keyboard
-*
-* INPUTS :
-*       PARAMETERS:
-*           int     MaxChars                max chars to read before beeping
-*       GLOBALS :
-*           struct  Terminal                Terminal description (in termdata.h)
-*                   char    .BackspaceCode  Code for backspace
-*                   char *  .CharSet        keyboard conversion tables
-* OUTPUTS :
-*       PARAMETERS:
-*           char    * pKbdBuf               -> buffer for keyboard chars
-*       GLOBALS :
-*            None
-* RETURN :
-*******************************************************************/
