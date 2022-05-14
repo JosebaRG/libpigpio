@@ -23,7 +23,7 @@ int main()
     libpigpio_write_value(gpio,"1");
 
     libpigpio_read_value (gpio, result);
-    printf("El resultado es: %s", &result);
+    printf("El resultado es: %s", result);
 
     libpigpio_close(gpio);
 }
@@ -117,7 +117,7 @@ int libpigpio_close  (char gpio [LIBPIGPIO_GPIO_LENGTH])
  *
  * RETURN :
  *           int     value for error code
- *********************************************************************/
+ ********************************************************************/
 int libpigpio_write_direction (char gpio [LIBPIGPIO_GPIO_LENGTH], char direction [LIBPIGPIO_DIR_LENGTH])
 {
     FILE* File;
@@ -137,7 +137,7 @@ int libpigpio_write_direction (char gpio [LIBPIGPIO_GPIO_LENGTH], char direction
     if ( ! ( strcmp(direction,"IN") || strcmp(direction,"OUT") ) )
         return -3;
 
-    strcpy(path, GPIO_PATH);
+    strcpy(path, LIBPIGPIO_PATH);
     strcat(path, gpio);
     strcat(path, "/direction");
 
@@ -180,11 +180,11 @@ int libpigpio_read_direction (char gpio [LIBPIGPIO_GPIO_LENGTH], char *direction
     char path[50];
     int dir_len;
 
-    strcpy(path, GPIO_PATH);
+    strcpy(path, LIBPIGPIO_PATH);
     strcat(path, gpio);
     strcat(path, "/direction");
 
-    File = fopen(path, "wr");
+    File = fopen(path, "r");
 
     if(File==NULL)
     {        
@@ -241,7 +241,7 @@ int libpigpio_write_value (char gpio [LIBPIGPIO_GPIO_LENGTH], char value [LIBPIG
     FILE* File;
     char path[50];
 
-    strcpy(path, GPIO_PATH);
+    strcpy(path, LIBPIGPIO_PATH);
     strcat(path, gpio);
     strcat(path, "/value");
 
@@ -267,14 +267,14 @@ int libpigpio_write_value (char gpio [LIBPIGPIO_GPIO_LENGTH], char value [LIBPIG
 
 int libpigpio_read_value (char gpio [LIBPIGPIO_GPIO_LENGTH], char value [LIBPIGPIO_DIR_LENGTH])
 {
-    FILE* File;
+    FILE* File = NULL;
     char path[50];
 
-    strcpy(path, GPIO_PATH);
+    strcpy(path, LIBPIGPIO_PATH);
     strcat(path, gpio);
     strcat(path, "/value");
 
-    File = fopen(path, "wr");
+    File = fopen(path, "r");
 
     if(File==NULL)
     {        
