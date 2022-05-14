@@ -226,12 +226,12 @@ int libpigpio_init (char gpio [LIBPIGPIO_GPIO_LENGTH], char direction [LIBPIGPIO
 /*********************************************************************
  * NAME :            libpigpio_write_value
  *
- * DESCRIPTION :     Initializes the GPIO, doing all the steps at once
+ * DESCRIPTION :     Writes the GPIO value
  *
  * PARAMETERS :
  *       INPUTS :
  *           char    gpio  [GPIO_LENGTH]     Contains the GPIO number
- *           char    direction [LIBPIGPIO_DIR_LENGTH] "IN" or "OUT"
+ *           char    value [LIBPIGPIO_DIR_LENGTH]) Value to write
  *
  * RETURN :
  *           int     value for error code
@@ -265,9 +265,24 @@ int libpigpio_write_value (char gpio [LIBPIGPIO_GPIO_LENGTH], char value [LIBPIG
     return 0;
 }
 
+/*********************************************************************
+ * NAME :            libpigpio_read_value
+ *
+ * DESCRIPTION :     Reads the GPIO value
+ *
+ * PARAMETERS :
+ *       INPUTS :
+ *           char    gpio  [GPIO_LENGTH]     Contains the GPIO number
+ *       OUTPUTS :
+ *           char  * value [LIBPIGPIO_DIR_LENGTH]) String to write back the value
+ *
+ * RETURN :
+ *           int     value for error code
+ *********************************************************************/
+
 int libpigpio_read_value (char gpio [LIBPIGPIO_GPIO_LENGTH], char value [LIBPIGPIO_DIR_LENGTH])
 {
-    FILE* File = NULL;
+    FILE* File;
     char path[50];
 
     strcpy(path, LIBPIGPIO_PATH);
